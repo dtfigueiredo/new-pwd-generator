@@ -1,12 +1,24 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import Btn from '../src/components/Button'
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
+
+import pwdGenerator from './api/pwd_generator'
 
 export default function Home() {
 
-  const copiado = () => alert('Copiado')
-  const salvado = () => alert('Salvado')
+  const [pwdSize, setPwdSize] = useState(15)
+  const [newPwd, setNewPwd] = useState(' ')
+
+  const handleNewPwd = (pwdSize) => {
+    setNewPwd(pwdGenerator(pwdSize))
+  }
+
+  const handleCopyBtn = () => navigator.clipboard.writeText(newPwd)
+
+  useEffect(() => {
+    handleNewPwd(pwdSize)
+  })
 
   return (
     <div>
@@ -28,11 +40,11 @@ export default function Home() {
         <label htmlFor="numbers">Números</label>
 
         <div>
-          <p>OUTPUT SENHA</p>
+          <p>{newPwd}</p>
         </div>
 
-        <Btn onClick={copiado}>COPIAR</Btn>
-        <Btn onClick={salvado}>SALVAR</Btn>
+        <Btn onClick={handleCopyBtn}>COPIAR</Btn>
+        <Btn onClick={''}>SALVAR</Btn>
 
         {/* //TODO MODAL->SAVE LOCAL STORAGE */}
       </main>
