@@ -1,77 +1,45 @@
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
-}
+@tailwind base;
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ol,
-ul,
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
-}
-
-/* Set core root defaults */
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-/* Set core body defaults */
 body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
+  @apply w-full min-h-screen
+  font-body
+  bg-cover
+  bg-no-repeat
+  bg-gradient-to-br from-rose-600 to-purple-700;
 }
 
-/* A elements that don't have a class get default styles */
-a {
-  text-decoration: none;
-  color: inherit;
+.wrapper {
+  @apply w-11/12 max-w-3xl mx-auto border border-red-700;
 }
 
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
+.btn {
+  @apply my-0 mx-1 py-2 px-4 text-center uppercase font-bold border rounded-lg outline-none
+  hover:opacity-80
+  focus:opacity-80
+  active:opacity-80
+  transition-all;
+}
+.btn-pages {
+  @apply bg-indigo-700 text-white  border-white;
+}
+.btn-cta {
+  @apply bg-cyan-600 text-cyan-50 border-cyan-50;
 }
 
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
+.socials {
+  @apply mx-1 text-4xl inline-block align-middle text-black;
 }
 
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+.header {
+  @apply w-full p-2 mb-4
+  flex justify-end items-center
+  bg-slate-900/30
+  text-gray-50
+  backdrop-blur-lg;
 }
+
+@tailwind components;
+@tailwind utilities;

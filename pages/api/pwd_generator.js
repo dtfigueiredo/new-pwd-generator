@@ -1,4 +1,6 @@
-export default function pwdGenerator(pwdSizeState) {
+export default function pwdGenerator(pwdSize, hasSymbols, hasNumbers) {
+  console.log('tamanho: ' + pwdSize)
+
   const symbols = ['!', '?', '@', '#', '$', '%', '&', '*', '+', '-', '=', '_', ':', ';', '.']
   const lowerLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   const upperLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -10,23 +12,30 @@ export default function pwdGenerator(pwdSizeState) {
   const randomNumbersCharacter = () => numbers[Math.floor(Math.random() * numbers.length)]
 
   const randomCharacter = [
-    randomSymbolsCharacter,
     randomUpperLettersCharacter,
     randomLowerLettersCharacter,
-    randomNumbersCharacter
   ]
+
+  if (hasSymbols) {
+    randomCharacter.push(randomSymbolsCharacter)
+  }
+
+  if (hasNumbers) {
+    randomCharacter.push(randomNumbersCharacter)
+  }
 
   //* essa função sorteia qual função irá preencher determinado caractere da senha
   const randomCharacterPickFunction = () => randomCharacter[Math.floor(Math.random() * randomCharacter.length)]
   //* esse callback recebe o resultado do sorteio de qual função vai gerar determinado caractere da senha e o executa
   const randomCharacterPickCallback = (fn) => fn()
 
-  const pwdSize = pwdSizeState
   const newPwd = new Array(pwdSize) //* criando um array com o tamanho da senha
     .fill()
     .map(randomCharacterPickFunction)
     .map(randomCharacterPickCallback)
     .join('')
+
+  console.log('senha: ' + newPwd)
 
   return newPwd
 }

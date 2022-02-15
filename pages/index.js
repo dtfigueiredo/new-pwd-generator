@@ -1,24 +1,32 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Btn from '../src/components/Button'
-// import styles from '../styles/Home.module.css'
-
+import Header from '../src/components/Header'
 import pwdGenerator from './api/pwd_generator'
 
 export default function Home() {
+  const routes = useRouter()
+  const handleSavedPwdPage = () => routes.push('/saved-pwd')
 
   const [pwdSize, setPwdSize] = useState(15)
-  const [newPwd, setNewPwd] = useState(' ')
+  const [hasNumbers, setHasNumbers] = useState(true)
+  const [hasSymbols, setHasSymbols] = useState(true)
+  const [newPwd, setNewPwd] = useState('')
 
-  const handleNewPwd = (pwdSize) => {
-    setNewPwd(pwdGenerator(pwdSize))
+  const handlePwdSize = (event) => {
+    setPwdSize(Number(event.target.value))
   }
+  const handleHasNumber = () => setHasNumbers(!hasNumbers)
+  const handleHasSymbol = () => setHasSymbols(!hasSymbols)
+
+  const handleNewPwd = () => setNewPwd(pwdGenerator(pwdSize, hasSymbols, hasNumbers))
 
   const handleCopyBtn = () => navigator.clipboard.writeText(newPwd)
 
   useEffect(() => {
-    handleNewPwd(pwdSize)
-  })
+    handleNewPwd()
+  }, [pwdSize, hasSymbols, hasNumbers])
 
   return (
     <div>
@@ -30,44 +38,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Header
+        handleSavedPwdPage={handleSavedPwdPage} />
+
+      <main className="wrapper">
         <h1>Strong Password Generator</h1>
 
-        <input type="checkbox" name="specials" id="specials" />
+        <input type="range" min="10" max="30" value={pwdSize} onChange={handlePwdSize} />
+
+        <input type="checkbox" name="specials" id="specials" checked={hasSymbols}
+          onChange={handleHasSymbol} />
         <label htmlFor="specials">Símbolos</label>
 
-        <input type="checkbox" name="numbers" id="numbers" />
+        <input type="checkbox" name="numbers" id="numbers" checked={hasNumbers}
+          onChange={handleHasNumber} />
         <label htmlFor="numbers">Números</label>
 
         <div>
           <p>{newPwd}</p>
         </div>
 
-        <Btn onClick={handleCopyBtn}>COPIAR</Btn>
-        <Btn onClick={''}>SALVAR</Btn>
+        <Btn
+          className="btn btn-cta"
+          onClick={handleCopyBtn}>COPY</Btn>
+
+        <Btn
+          className="btn btn-cta"
+          onClick={''}>SAVE</Btn>
 
         {/* //TODO MODAL->SAVE LOCAL STORAGE */}
       </main>
-
-      <aside>
-        <h2>SENHAS SALVAS</h2>
-        <section>
-          <ul>
-            <li>
-              <h3>SITE 01</h3>
-              <p>GENERATED PWD 01</p>
-            </li>
-            <li>
-              <h3>SITE 02</h3>
-              <p>GENERATED PWD 02</p>
-            </li>
-            <li>
-              <h3>SITE 03</h3>
-              <p>GENERATED PWD 03</p>
-            </li>
-          </ul>
-        </section>
-      </aside>
     </div>
   )
 }
