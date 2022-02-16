@@ -13,6 +13,11 @@ const MainContent = (props) => {
           Strong Password Generator
         </h1>
 
+        <p
+          className="text-center font-body text-slate-200 text-base sm:text-lg">
+          Sua senha tem <span className="font-bold underline">{props.pwdSize}</span> caracteres.
+        </p>
+
         {/* //*Input range */}
         < input
           className="input-pwd"
@@ -23,20 +28,18 @@ const MainContent = (props) => {
           onChange={props.handlePwdSize} />
 
         {/* //*Checkbox */}
-
-
         <div className="flex-center my-4 mx-auto">
           <input
             className="checkbox"
             type="checkbox"
-            name="specials"
-            id="specials"
+            name="symbols"
+            id="symbols"
             checked={props.hasSymbols}
             onChange={props.handleHasSymbol} />
 
           <label
             className="label mr-2"
-            htmlFor="specials">
+            htmlFor="symbols">
             Símbolos
           </label>
 
@@ -63,11 +66,11 @@ const MainContent = (props) => {
         <div className="flex-center my-4">
           <Btn
             className="btn btn-cta"
-            onClick={props.handleCopyBtn}>Copiar senha</Btn>
+            onClick={props.handleCopyBtn}>Copiar</Btn>
 
           <Btn
             className="btn btn-cta"
-            onClick={props.handleSaveBtn}>Salvar senha</Btn>
+            onClick={props.handleSaveBtn}>Salvar</Btn>
         </div>
 
       </div>

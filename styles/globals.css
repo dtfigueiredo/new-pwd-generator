@@ -16,7 +16,7 @@ body {
 }
 
 .btn {
-  @apply my-0 mx-1 py-2 px-4 
+  @apply my-0 mx-1 py-2 px-4
   text-center uppercase font-bold 
   border rounded-lg outline-none
   hover:opacity-80
@@ -29,6 +29,9 @@ body {
 }
 .btn-cta {
   @apply bg-cyan-600 text-cyan-50 border-cyan-50;
+}
+.btn-close {
+  @apply mb-1  text-white text-xl border-white/30;
 }
 
 .socials {

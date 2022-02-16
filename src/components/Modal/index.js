@@ -7,16 +7,15 @@ const Modal = (props) => {
 
       <div className="flex-center flex-col">
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mt-8 ">
           <h2
-            className="mt-8 text-center font-headings font-bold text-white text-xl sm:text-2xl">
+            className="text-center font-headings font-bold text-white text-xl sm:text-2xl mr-2">
             Para qual app/site é a senha?
           </h2>
 
-          <button className="btn" onClick={props.handleIsModalOpen}>X</button>
+          <button className="btn btn-close" onClick={props.handleIsModalOpen}>X</button>
         </div>
 
-        {/* //*Input nome do site */}
         < input
           className="input-text"
           type="text"
@@ -24,7 +23,7 @@ const Modal = (props) => {
           value={props.pwdLabel}
           onChange={props.handlePwdLabel} />
 
-        {/* //*Btns Cta */}
+
         <div className="flex-center">
           <Btn
             className="btn btn-cta"
