@@ -12,11 +12,13 @@ body {
 }
 
 .wrapper {
-  @apply w-11/12 max-w-3xl mx-auto border border-red-700;
+  @apply w-11/12 max-w-3xl mx-auto;
 }
 
 .btn {
-  @apply my-0 mx-1 py-2 px-4 text-center uppercase font-bold border rounded-lg outline-none
+  @apply my-0 mx-1 py-2 px-4 
+  text-center uppercase font-bold 
+  border rounded-lg outline-none
   hover:opacity-80
   focus-visible:opacity-80
   active:opacity-80
@@ -30,15 +32,45 @@ body {
 }
 
 .socials {
-  @apply mx-1 text-4xl inline-block align-middle text-black;
+  @apply mx-2 text-4xl inline-block align-middle text-white;
 }
 
 .header {
   @apply w-full p-2 mb-4
-  flex justify-end items-center
-  bg-slate-900/30
+  flex justify-center sm:justify-end items-center
+  bg-slate-900/40
   text-gray-50
   backdrop-blur-lg;
+}
+
+.password-container {
+  @apply w-3/4 max-w-3xl my-4 mx-auto py-10 px-4
+  text-center rounded-lg
+  bg-slate-700/30;
+}
+.password {
+  @apply break-words font-headings font-bold text-white text-base sm:text-xl;
+}
+
+.input-pwd {
+  @apply w-2/4 my-4;
+}
+
+.input-text {
+  @apply w-2/4 my-4 py-2 px-4
+  rounded-lg outline-none border
+  focus:border-slate-700;
+}
+
+.label {
+  @apply ml-1  text-white font-semibold hover:cursor-pointer;
+}
+.checkbox {
+  @apply hover:cursor-pointer;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
 }
 
 @tailwind components;

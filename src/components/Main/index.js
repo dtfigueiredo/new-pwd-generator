@@ -5,31 +5,72 @@ const MainContent = (props) => {
 
   return (
     <main className="wrapper">
-      <h1>Strong Password Generator</h1>
 
-      <input type="range" min="10" max="30" value={props.pwdSize} onChange={props.handlePwdSize} />
+      <div className="flex-center flex-col">
 
-      <input type="checkbox" name="specials" id="specials" checked={props.hasSymbols}
-        onChange={props.handleHasSymbol} />
-      <label htmlFor="specials">Símbolos</label>
+        <h1
+          className="mt-4 mb-8 text-center font-headings font-bold text-white text-xl sm:text-3xl">
+          Strong Password Generator
+        </h1>
 
-      <input type="checkbox" name="numbers" id="numbers" checked={props.hasNumbers}
-        onChange={props.handleHasNumber} />
-      <label htmlFor="numbers">Números</label>
+        {/* //*Input range */}
+        < input
+          className="input-pwd"
+          type="range"
+          min="10"
+          max="30"
+          value={props.pwdSize}
+          onChange={props.handlePwdSize} />
 
-      <div>
-        <p>{props.newPwd}</p>
+        {/* //*Checkbox */}
+
+
+        <div className="flex-center my-4 mx-auto">
+          <input
+            className="checkbox"
+            type="checkbox"
+            name="specials"
+            id="specials"
+            checked={props.hasSymbols}
+            onChange={props.handleHasSymbol} />
+
+          <label
+            className="label mr-2"
+            htmlFor="specials">
+            Símbolos
+          </label>
+
+          <input
+            className="checkbox"
+            type="checkbox"
+            name="numbers"
+            id="numbers"
+            checked={props.hasNumbers}
+            onChange={props.handleHasNumber} />
+
+          <label
+            className="label"
+            htmlFor="numbers">
+            Números
+          </label>
+        </div>
+
+        <div className="password-container">
+          <p className="password">{props.newPwd}</p>
+        </div>
+
+        {/* //*Btns Cta */}
+        <div className="flex-center my-4">
+          <Btn
+            className="btn btn-cta"
+            onClick={props.handleCopyBtn}>Copiar senha</Btn>
+
+          <Btn
+            className="btn btn-cta"
+            onClick={props.handleSaveBtn}>Salvar senha</Btn>
+        </div>
+
       </div>
-
-      <Btn
-        className="btn btn-cta"
-        onClick={props.handleCopyBtn}>COPY</Btn>
-
-      <Btn
-        className="btn btn-cta"
-        onClick={console.log('clicado')}>SAVE</Btn>
-
-      {/* //TODO MODAL->SAVE LOCAL STORAGE */}
     </main>
   )
 }

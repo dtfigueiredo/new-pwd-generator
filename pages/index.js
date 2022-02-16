@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import Header from '../src/components/Header'
 import MainContent from '../src/components/Main'
+import Modal from '../src/components/Modal'
 import pwdGenerator from './api/pwd_generator'
 
 export default function Home() {
@@ -10,13 +11,15 @@ export default function Home() {
   const handleSavedPwdPage = () => routes.push('/my-passwords')
 
   const [pwdSize, setPwdSize] = useState(15)
+  const [pwdLabel, setPwdLabel] = useState('')
   const [hasNumbers, setHasNumbers] = useState(true)
   const [hasSymbols, setHasSymbols] = useState(true)
   const [newPwd, setNewPwd] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handlePwdSize = (event) => {
-    setPwdSize(Number(event.target.value))
-  }
+  const handlePwdSize = (event) => setPwdSize(Number(event.target.value))
+  const handlePwdLabel = (event) => setPwdLabel(event.target.value)
+
   const handleHasNumber = () => setHasNumbers(!hasNumbers)
   const handleHasSymbol = () => setHasSymbols(!hasSymbols)
 
@@ -24,12 +27,18 @@ export default function Home() {
 
   const handleCopyBtn = () => navigator.clipboard.writeText(newPwd)
 
+  const handleIsModalOpen = () => setIsModalOpen(!isModalOpen)
+  const handleSaveBtn = () => {
+    handleIsModalOpen()
+    setPwdLabel('')
+  }
+
   useEffect(() => {
     handleNewPwd()
   }, [pwdSize, hasSymbols, hasNumbers])
 
   return (
-    <div>
+    <>
       <Head>
         <title>Password Generator</title>
         <meta name="description" content="Strong passwords website generator" />
@@ -51,7 +60,16 @@ export default function Home() {
         handlePwdSize={handlePwdSize}
         handleHasNumber={handleHasNumber}
         handleHasSymbol={handleHasSymbol}
-        handleCopyBtn={handleCopyBtn} />
-    </div>
+        handleCopyBtn={handleCopyBtn}
+        handleSaveBtn={handleSaveBtn} />
+
+      {isModalOpen && (
+        <Modal
+          handleSaveBtn={handleSaveBtn}
+          handleIsModalOpen={handleIsModalOpen}
+          pwdLabel={pwdLabel}
+          handlePwdLabel={handlePwdLabel} />
+      )}
+    </>
   )
 }
