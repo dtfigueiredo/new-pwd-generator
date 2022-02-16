@@ -28,7 +28,7 @@ export default function HeaderMenu(props) {
 
         <Btn
           className="btn btn-pages"
-          onClick={props.handleSavedPwdPage}>Minhas senhas</Btn>
+          onClick={props.handleNavigate}>{props.btnLabel}</Btn>
       </div>
     </div>
   )

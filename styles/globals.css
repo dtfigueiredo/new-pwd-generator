@@ -18,7 +18,7 @@ body {
 .btn {
   @apply my-0 mx-1 py-2 px-4 text-center uppercase font-bold border rounded-lg outline-none
   hover:opacity-80
-  focus:opacity-80
+  focus-visible:opacity-80
   active:opacity-80
   transition-all;
 }
