@@ -54,6 +54,15 @@ body {
   @apply break-words font-headings font-bold text-white text-base sm:text-xl;
 }
 
+.feedback-container {
+  @apply w-3/4 max-w-3xl my-4 mx-auto py-2 px-2
+  text-center rounded-lg
+  bg-slate-700/30;
+}
+.feedback {
+  @apply break-words font-headings font-bold text-white text-base sm:text-xl;
+}
+
 .input-pwd {
   @apply w-2/4 my-4;
 }

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import Feedback from '../src/components/Feedback'
 import Header from '../src/components/Header'
 import MainContent from '../src/components/Main'
 import Modal from '../src/components/Modal'
@@ -16,6 +17,7 @@ export default function Home() {
   const [hasSymbols, setHasSymbols] = useState(true)
   const [newPwd, setNewPwd] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [ísFeedbackOpen, setIsFeedbackOpen] = useState(false)
 
   const handlePwdSize = (event) => setPwdSize(Number(event.target.value))
   const handlePwdLabel = (event) => setPwdLabel(event.target.value)
@@ -25,11 +27,18 @@ export default function Home() {
 
   const handleNewPwd = () => setNewPwd(pwdGenerator(pwdSize, hasSymbols, hasNumbers))
 
-  const handleCopyBtn = () => navigator.clipboard.writeText(newPwd)
+  const handleCopyBtn = () => {
+    navigator.clipboard.writeText(newPwd)
+    setIsFeedbackOpen(true)
+    setTimeout(() => {
+      setIsFeedbackOpen(false)
+    }, 2000);
+  }
 
   const handleIsModalOpen = () => setIsModalOpen(!isModalOpen)
+
   const handleSaveBtn = () => {
-    handleIsModalOpen()
+    handleIsModalOpen(true)
     setPwdLabel('')
   }
 
@@ -62,6 +71,10 @@ export default function Home() {
         handleHasSymbol={handleHasSymbol}
         handleCopyBtn={handleCopyBtn}
         handleSaveBtn={handleSaveBtn} />
+
+      {ísFeedbackOpen && (
+        <Feedback />
+      )}
 
       {isModalOpen && (
         <Modal

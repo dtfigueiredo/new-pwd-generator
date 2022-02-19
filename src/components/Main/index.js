@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Btn from '../Button'
 
 const MainContent = (props) => {
