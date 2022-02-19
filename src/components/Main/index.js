@@ -66,6 +66,10 @@ const MainContent = (props) => {
         <div className="flex-center my-4">
           <Btn
             className="btn btn-cta"
+            onClick={props.handleNewPwd}>Nova Senha</Btn>
+
+          <Btn
+            className="btn btn-cta"
             onClick={props.handleCopyBtn}>Copiar</Btn>
 
           <Btn
