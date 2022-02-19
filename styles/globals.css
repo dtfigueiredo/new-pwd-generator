@@ -84,5 +84,47 @@ body {
   @apply flex justify-center items-center;
 }
 
+.saved-pwd-list {
+  @apply w-3/4 max-w-3xl my-2 mx-auto py-2 px-2
+  rounded-lg
+  bg-slate-700/10;
+}
+
+.saved-pwd {
+  @apply mx-auto my-2 px-2 py-1 flex-1
+  rounded-lg
+  bg-slate-700/30;
+}
+
+.copy-pwd {
+  @apply my-1 mx-auto py-2 px-4
+  text-center uppercase font-bold text-sm sm:text-base 
+  border rounded-lg outline-slate-100/20
+  bg-cyan-600 text-cyan-50 border-cyan-50
+  hover:opacity-80
+  active:opacity-80
+  transition-all;
+}
+.copy-pwd:hover {
+  @apply text-gray-100 font-bold
+  bg-slate-700
+  border-gray-400;
+}
+
+.trash {
+  @apply p-2 ml-auto
+  text-gray-50
+  rounded-xl 
+  border 
+  border-transparent
+  outline-none
+  transition-all;
+}
+.trash:hover {
+  @apply text-gray-100 font-bold
+  bg-slate-700
+  border-gray-400;
+}
+
 @tailwind components;
 @tailwind utilities;

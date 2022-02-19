@@ -2,6 +2,19 @@ import Btn from '../Button'
 
 const Modal = (props) => {
 
+  const storagePwd = () => {
+    let label = props.pwdLabel
+    let password = props.newPwd
+
+    if (!label || !password) {
+      alert('erro')
+      return
+    }
+
+    props.handleSavePwdStorage(label, password)
+    props.handleIsModalOpen()
+  }
+
   return (
     <main className="wrapper">
 
@@ -27,8 +40,9 @@ const Modal = (props) => {
         <div className="flex-center">
           <Btn
             className="btn btn-cta"
-            onClick={props.handleSaveBtn}>Finalizar</Btn>
+            onClick={() => storagePwd()}>Finalizar</Btn>
         </div>
+
 
       </div>
     </main>
