@@ -36,7 +36,7 @@ export default function Home() {
     setIsFeedbackOpen(true)
     setTimeout(() => {
       setIsFeedbackOpen(false)
-    }, 2000);
+    }, 1500);
   }
 
   const handleIsModalOpen = () => setIsModalOpen(!isModalOpen)

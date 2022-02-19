@@ -31,7 +31,7 @@ export default function SavedPwds() {
   }, [])
 
   return (
-    <div>
+    <>
       <Head>
         <title>My Passwords</title>
         <meta name="description" content="Strong passwords website generator" />
@@ -44,38 +44,43 @@ export default function SavedPwds() {
         handleNavigate={handleHomePage}
         btnLabel="Home Page" />
 
-      <h1 className="text-center feedback">MINHAS SENHAS</h1>
+      <main className="wrapper">
+        <div className="flex-center flex-col">
 
-      <div className="wrapper">
-        <ul className="saved-pwd-list">
+          <h1 className="mt-4 mb-8 text-center font-headings font-bold text-white text-xl sm:text-3xl">
+            Minhas Senhas
+          </h1>
 
-          {isFeedbackOpen && (
-            <Feedback />
-          )}
+          <ul className="saved-pwd-list">
 
-          {savedPwdList.length === 0
-            ? (<div>
-              <h2 className="text-center text-white">LISTA VAZIA</h2>
-            </div>)
-            : (savedPwdList.map((password, index) => (
-              <li key={index} className="saved-pwd">
+            {isFeedbackOpen && (
+              <Feedback />
+            )}
 
-                <div className="flex justify-between items-center">
-                  <h3 className="text-gray-50 uppercase">{password.label}</h3>
-                  <button className="trash"><FiTrash2 /></button>
-                </div>
+            {savedPwdList.length === 0
+              ? (<div>
+                <h2 className="text-center text-white">LISTA VAZIA</h2>
+              </div>)
+              : (savedPwdList.map((password, index) => (
+                <li key={index} className="saved-pwd">
 
-                <div className="flex-center">
-                  <button
-                    onClick={handleCopyBtn}
-                    className="copy-pwd">{password.pwdText}</button>
-                </div>
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-gray-50 uppercase">{password.label}</h3>
+                    <button className="trash"><FiTrash2 /></button>
+                  </div>
 
-              </li>
-            )))
-          }
-        </ul>
-      </div>
-    </div>
+                  <div className="flex-center">
+                    <button
+                      onClick={handleCopyBtn}
+                      className="copy-pwd">{password.pwdText}</button>
+                  </div>
+
+                </li>
+              )))
+            }
+          </ul>
+        </div>
+      </main>
+    </>
   )
 }
