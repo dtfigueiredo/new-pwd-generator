@@ -97,7 +97,7 @@ body {
 }
 
 .copy-pwd {
-  @apply my-1 mx-auto py-2 px-4
+  @apply my-1 mx-auto py-1 px-4
   text-center uppercase font-bold text-sm sm:text-base 
   border rounded-lg outline-slate-100/20
   bg-cyan-600 text-cyan-50 border-cyan-50
@@ -112,8 +112,9 @@ body {
 }
 
 .trash {
-  @apply p-2 ml-auto
+  @apply p-2 
   text-gray-50
+  text-xl
   rounded-xl 
   border 
   border-transparent

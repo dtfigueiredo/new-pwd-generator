@@ -15,15 +15,12 @@ export default function Home() {
 
   const [pwdSize, setPwdSize] = useState(15)
   const [pwdLabel, setPwdLabel] = useState('')
-  console.log('state pwdLabel: ' + pwdLabel)
 
   const [hasNumbers, setHasNumbers] = useState(true)
   const [hasSymbols, setHasSymbols] = useState(true)
 
   const [newPwd, setNewPwd] = useState('')
-  console.log('state newPwd: ' + newPwd)
   const [newPwdObj, setNewPwdObj] = useState({})
-  const [newPwdId, setNewPwdId] = useState(1)
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false)
@@ -69,12 +66,9 @@ export default function Home() {
 
   const handleSavePwdStorage = () => {
     setNewPwdObj({
-      id: newPwdId,
       label: pwdLabel,
       pwdText: newPwd
     })
-
-    setNewPwdId(newPwdId + 1)
 
     saveNewPwd('@my-passwords', newPwdObj)
   }
@@ -99,13 +93,13 @@ export default function Home() {
 
       <MainContent
         pwdSize={pwdSize}
-        newPwd={newPwd}
-        hasSymbols={hasSymbols}
-        hasNumbers={hasNumbers}
-        handleNewPwd={handleNewPwd}
         handlePwdSize={handlePwdSize}
-        handleHasNumber={handleHasNumber}
+        newPwd={newPwd}
+        handleNewPwd={handleNewPwd}
+        hasSymbols={hasSymbols}
         handleHasSymbol={handleHasSymbol}
+        hasNumbers={hasNumbers}
+        handleHasNumber={handleHasNumber}
         handleCopyBtn={handleCopyBtn}
         handleSaveBtn={handleSaveBtn} />
 
@@ -115,7 +109,6 @@ export default function Home() {
 
       {isModalOpen && (
         <Modal
-          handleSaveBtn={handleSaveBtn}
           handleSaveStorageBtn={handleSaveStorageBtn}
           handleSavePwdStorage={handleSavePwdStorage}
           handleErrFeedback={handleErrFeedback}

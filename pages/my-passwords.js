@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { FiTrash2 } from 'react-icons/fi'
 import Header from "../src/components/Header";
 import Feedback from "../src/components/Feedback";
-import { getSavedPwd } from '../src/utils/storage'
+import { getSavedPwd, deletePwd } from '../src/utils/storage'
 
 export default function SavedPwds() {
   const routes = useRouter()
@@ -21,14 +21,22 @@ export default function SavedPwds() {
     }, 2000);
   }
 
-  useEffect(() => {
-    const savedPwd = async () => {
-      const result = await getSavedPwd('@my-passwords')
-      console.log(result)
-      setSavedPwdList(result)
-    }
+  const handleGetSavedPwd = async () => {
+    const savedPwdList = await getSavedPwd('@my-passwords')
+    setSavedPwdList(savedPwdList)
+    console.log('lista de senhas: ' + savedPwdList)
+  }
 
-    savedPwd()
+  const handleDeletePwd = (password) => {
+    let pwdText = password.pwdText
+    console.log('texto via param: ' + pwdText)
+
+    deletePwd(savedPwdList, pwdText)
+    handleGetSavedPwd()
+  }
+
+  useEffect(() => {
+    handleGetSavedPwd()
   }, [])
 
   return (
@@ -63,23 +71,29 @@ export default function SavedPwds() {
                 <h2 className="text-center text-white">LISTA VAZIA</h2>
               </div>)
               : (savedPwdList.map((password) => (
-                <li key={password.id} className="saved-pwd">
+                <li key={password.pwdText} className="saved-pwd">
 
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-gray-50 uppercase">{password.label}</h3>
-                    <button className="trash">
-                      <FiTrash2
-                        onClick={() => console.log('clicado')} />
-                    </button>
+                  <div className="flex justify-center items-center flex-col p-1">
+
+                    <h3 className="text-gray-50 font-bold font-headings uppercase underline mb-1">
+                      {password.label}
+                    </h3>
+
+                    <div className="w-full flex justify-between items-center">
+                      <button
+                        className="copy-pwd"
+                        onClick={handleCopyBtn}>
+                        {password.pwdText}
+                      </button>
+
+                      <button
+                        className="trash"
+                        onClick={() => { handleDeletePwd(password) }}>
+                        <FiTrash2 />
+                      </button>
+                    </div>
+
                   </div>
-
-                  <div className="flex-center">
-                    <button
-                      onClick={handleCopyBtn}
-                      className="copy-pwd">{password.pwdText}
-                    </button>
-                  </div>
-
                 </li>
               )))
             }
