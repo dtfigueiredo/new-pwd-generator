@@ -7,8 +7,6 @@ const Modal = (props) => {
     let label = props.pwdLabel
     let password = props.newPwd
 
-    console.log(label, password)
-
     if (!label || !password) {
       props.handleErrFeedback()
       return

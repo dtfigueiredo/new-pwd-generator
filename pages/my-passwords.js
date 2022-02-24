@@ -24,12 +24,10 @@ export default function SavedPwds() {
   const handleGetSavedPwd = async () => {
     const savedPwdList = await getSavedPwd('@my-passwords')
     setSavedPwdList(savedPwdList)
-    console.log('lista de senhas: ' + savedPwdList)
   }
 
   const handleDeletePwd = (password) => {
     let pwdText = password.pwdText
-    console.log('texto via param: ' + pwdText)
 
     deletePwd(savedPwdList, pwdText)
     handleGetSavedPwd()
