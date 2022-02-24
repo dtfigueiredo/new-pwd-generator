@@ -1,17 +1,21 @@
 import Btn from '../Button'
+import ErrorFeedback from '../ErrFeedback'
 
 const Modal = (props) => {
 
-  const storagePwd = () => {
+  const savePwdInStorage = () => {
     let label = props.pwdLabel
     let password = props.newPwd
 
+    console.log(label, password)
+
     if (!label || !password) {
-      alert('erro')
+      props.handleErrFeedback()
       return
     }
 
     props.handleSavePwdStorage(label, password)
+    props.handleSaveStorageBtn()
     props.handleIsModalOpen()
   }
 
@@ -29,6 +33,10 @@ const Modal = (props) => {
           <button className="btn btn-close" onClick={props.handleIsModalOpen}>X</button>
         </div>
 
+        {props.isErrFeedbackOpen && (
+          <ErrorFeedback />
+        )}
+
         < input
           className="input-text"
           type="text"
@@ -36,13 +44,11 @@ const Modal = (props) => {
           value={props.pwdLabel}
           onChange={props.handlePwdLabel} />
 
-
-        <div className="flex-center">
+        <div className="flex-center flex-col">
           <Btn
             className="btn btn-cta"
-            onClick={() => storagePwd()}>Finalizar</Btn>
+            onClick={() => savePwdInStorage()}>Armazenar</Btn>
         </div>
-
 
       </div>
     </main>
